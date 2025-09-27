@@ -11,11 +11,21 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "WEATHER_API_KEY", "\"6e5ceb0762ce41abbb381928240506\"")
+    }
+
+    signingConfigs {
+        create("release") {
+            // These will be set when you create your keystore
+            // storeFile = file("path/to/your/keystore.jks")
+            // storePassword = "your_store_password"
+            // keyAlias = "your_key_alias"
+            // keyPassword = "your_key_password"
+        }
     }
 
     buildFeatures {
@@ -25,10 +35,14 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // signingConfig = signingConfigs.getByName("release")
         }
         debug {
             isMinifyEnabled = false
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
     }
     compileOptions {

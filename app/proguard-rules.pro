@@ -38,8 +38,12 @@
     @com.google.gson.annotations.SerializedName <fields>;
 }
 
-# Keep weather data models
+# Keep weather data models and adapters
 -keep class com.example.weatherapp.** { *; }
+-keepclassmembers class com.example.weatherapp.** {
+    public <init>(...);
+    public <methods>;
+}
 
 # Keep AndroidX and Material Design classes
 -keep class androidx.** { *; }
@@ -47,3 +51,23 @@
 
 # Location services
 -keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
+
+# Keep RecyclerView adapters
+-keepclassmembers class * extends androidx.recyclerview.widget.RecyclerView$ViewHolder {
+    public <init>(...);
+}
+
+# Keep app-specific classes that might be accessed via reflection
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# Prevent obfuscation of classes used in layouts
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
