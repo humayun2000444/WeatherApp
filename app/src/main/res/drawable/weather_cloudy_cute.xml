@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Cloud -->
+    <path
+        android:fillColor="#E0E7FF"
+        android:pathData="M30,70 C20,70 12,62 12,52 C12,42 20,34 30,34 C32,34 34,34.4 36,35 C40,25 50,18 62,18 C74,18 84,25 88,35 C90,34.4 92,34 94,34 C104,34 112,42 112,52 C112,62 104,70 94,70 Z" />
+
+    <!-- Cloud face -->
+    <!-- Eyes -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M50,45 C51.66,45 53,46.34 53,48 C53,49.66 51.66,51 50,51 C48.34,51 47,49.66 47,48 C47,46.34 48.34,45 50,45 Z" />
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M70,45 C71.66,45 73,46.34 73,48 C73,49.66 71.66,51 70,51 C68.34,51 67,49.66 67,48 C67,46.34 68.34,45 70,45 Z" />
+
+    <!-- Smile -->
+    <path
+        android:pathData="M45,58 Q60,68 75,58"
+        android:strokeWidth="3"
+        android:strokeColor="#6366F1"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Rosy cheeks -->
+    <path
+        android:fillColor="#FFB3BA"
+        android:fillAlpha="0.6"
+        android:pathData="M38,50 C40.21,50 42,51.79 42,54 C42,56.21 40.21,58 38,58 C35.79,58 34,56.21 34,54 C34,51.79 35.79,50 38,50 Z" />
+    <path
+        android:fillColor="#FFB3BA"
+        android:fillAlpha="0.6"
+        android:pathData="M82,50 C84.21,50 86,51.79 86,54 C86,56.21 84.21,58 82,58 C79.79,58 78,56.21 78,54 C78,51.79 79.79,50 82,50 Z" />
+
+</vector>

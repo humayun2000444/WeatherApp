@@ -19,3 +19,31 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# OkHttp and related libraries
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn retrofit2.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.conscrypt.**
+-dontwarn org.openjsse.**
+
+# Keep OkHttp classes
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+
+# Keep Gson classes for JSON parsing
+-keep class com.google.gson.** { *; }
+-keepclassmembers class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# Keep weather data models
+-keep class com.example.weatherapp.** { *; }
+
+# Keep AndroidX and Material Design classes
+-keep class androidx.** { *; }
+-keep class com.google.android.material.** { *; }
+
+# Location services
+-keep class com.google.android.gms.** { *; }

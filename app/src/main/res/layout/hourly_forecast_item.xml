@@ -1,27 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/hourly_item_background">
 
-    <TextView
-        android:id="@+id/timeTextView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
-        android:textStyle="bold"/>
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/tempTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Temperature"/>
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            tools:text="12:00" />
 
-    <TextView
-        android:id="@+id/conditionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Condition"/>
+        <ImageView
+            android:id="@+id/weatherIconImageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_sunny"
+            app:tint="@color/primary_color" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tempTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="25°" />
+
+        <TextView
+            android:id="@+id/conditionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="Sunny" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

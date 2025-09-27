@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Cloud -->
+    <path
+        android:fillColor="#94A3B8"
+        android:pathData="M25,60 C15,60 7,52 7,42 C7,32 15,24 25,24 C27,24 29,24.4 31,25 C35,15 45,8 57,8 C69,8 79,15 83,25 C85,24.4 87,24 89,24 C99,24 107,32 107,42 C107,52 99,60 89,60 Z" />
+
+    <!-- Cloud face -->
+    <!-- Eyes -->
+    <path
+        android:fillColor="#475569"
+        android:pathData="M45,35 C46.66,35 48,36.34 48,38 C48,39.66 46.66,41 45,41 C43.34,41 42,39.66 42,38 C42,36.34 43.34,35 45,35 Z" />
+    <path
+        android:fillColor="#475569"
+        android:pathData="M65,35 C66.66,35 68,36.34 68,38 C68,39.66 66.66,41 65,41 C63.34,41 62,39.66 62,38 C62,36.34 63.34,35 65,35 Z" />
+
+    <!-- Neutral expression -->
+    <path
+        android:pathData="M50,48 L64,48"
+        android:strokeWidth="2"
+        android:strokeColor="#475569"
+        android:strokeLineCap="round" />
+
+    <!-- Rain drops -->
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M35,70 C35,72 33,74 31,74 C29,74 27,72 27,70 C27,68 29,66 31,66 C33,66 35,68 35,70 Z" />
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M55,75 C55,77 53,79 51,79 C49,79 47,77 47,75 C47,73 49,71 51,71 C53,71 55,73 55,75 Z" />
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M75,70 C75,72 73,74 71,74 C69,74 67,72 67,70 C67,68 69,66 71,66 C73,66 75,68 75,70 Z" />
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M45,85 C45,87 43,89 41,89 C39,89 37,87 37,85 C37,83 39,81 41,81 C43,81 45,83 45,85 Z" />
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M65,85 C65,87 63,89 61,89 C59,89 57,87 57,85 C57,83 59,81 61,81 C63,81 65,83 65,85 Z" />
+
+</vector>

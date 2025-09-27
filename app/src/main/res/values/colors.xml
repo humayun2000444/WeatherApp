@@ -2,4 +2,53 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary Colors -->
+    <color name="primary_color">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+
+    <!-- Cute Primary Colors -->
+    <color name="primary_cute">#6366F1</color>
+    <color name="primary_cute_light">#A5B4FC</color>
+    <color name="primary_cute_dark">#4338CA</color>
+
+    <!-- Background Colors -->
+    <color name="background_primary">#F5F5F5</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="current_weather_card">#4CAF50</color>
+    <color name="hourly_item_background">#FAFAFA</color>
+
+    <!-- Cute Background Colors -->
+    <color name="card_background_cute">#FFFFFF</color>
+    <color name="current_weather_card_cute">#6366F1</color>
+    <color name="search_card_background">#FFFFFF</color>
+    <color name="fab_background_cute">#EC4899</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="hint_color">#9E9E9E</color>
+    <color name="error_color">#F44336</color>
+
+    <!-- Cute Text Colors -->
+    <color name="text_primary_cute">#1F2937</color>
+    <color name="text_secondary_cute">#6B7280</color>
+    <color name="search_text_color">#374151</color>
+    <color name="search_hint_color">#9CA3AF</color>
+    <color name="search_icon_tint">#6B7280</color>
+    <color name="error_color_cute">#F87171</color>
+    <color name="error_text_color">#DC2626</color>
+
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#2196F3</color>
+    <color name="gradient_end">#21CBF3</color>
+
+    <!-- Night Mode Colors -->
+    <color name="background_primary_night">#121212</color>
+    <color name="card_background_night">#1E1E1E</color>
+    <color name="current_weather_card_night">#2E7D32</color>
+    <color name="hourly_item_background_night">#2C2C2C</color>
+    <color name="text_primary_night">#FFFFFF</color>
+    <color name="text_secondary_night">#AAAAAA</color>
 </resources>

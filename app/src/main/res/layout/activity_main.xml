@@ -1,54 +1,567 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/weather_background_sunny"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/cityInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter city name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:gravity="center"/>
-
-    <Button
-        android:id="@+id/getWeatherButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Weather"
-        android:layout_below="@id/cityInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:gravity="center"/>
-
-    <TextView
-        android:id="@+id/weatherResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_below="@id/getWeatherButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:gravity="center"/>
-
-    <TextView
-        android:id="@+id/locationResult"
+    <!-- Top Bar with Location and Actions -->
+    <LinearLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:layout_below="@id/weatherResult"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:gravity="center"/>
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="24dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hourlyForecastRecyclerView"
+        <ImageView
+            android:id="@+id/menuIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_menu"
+            app:tint="@android:color/white"
+            android:background="@drawable/circular_ripple"
+            android:padding="6dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/currentLocationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 Getting location..."
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:drawablePadding="6dp" />
+
+            <TextView
+                android:id="@+id/lastUpdatedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Updated just now"
+                android:textColor="#80FFFFFF"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/favoriteIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_favorite_border"
+            app:tint="@android:color/white"
+            android:background="@drawable/circular_ripple"
+            android:padding="6dp" />
+
+    </LinearLayout>
+
+    <!-- Main Content -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/locationResult"
-        android:layout_marginTop="20dp"
-        android:gravity="center"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@android:color/white">
 
-</RelativeLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="100dp">
+
+                <!-- Search Bar -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/search_card_background">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_search_cute"
+                            app:tint="@color/search_icon_tint"
+                            android:layout_marginEnd="12dp" />
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/cityInput"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Search for cities..."
+                            android:textColorHint="@color/search_hint_color"
+                            android:textColor="@color/search_text_color"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="sans-serif"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text" />
+
+                        <ImageView
+                            android:id="@+id/getWeatherButton"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_send_cute"
+                            app:tint="@color/primary_cute"
+                            android:background="@drawable/circular_ripple_colored"
+                            android:padding="6dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Current Weather Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/currentWeatherCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="@color/current_weather_card_cute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="32dp">
+
+                        <!-- Main Weather Info -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/temperatureText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="22°"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="72sp"
+                                    android:fontFamily="sans-serif-light"
+                                    android:letterSpacing="-0.02"
+                                    tools:text="22°" />
+
+                                <TextView
+                                    android:id="@+id/conditionText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mostly sunny"
+                                    android:textColor="#E0FFFFFF"
+                                    android:textSize="18sp"
+                                    android:fontFamily="sans-serif"
+                                    android:layout_marginTop="-8dp"
+                                    tools:text="Mostly sunny" />
+
+                                <TextView
+                                    android:id="@+id/feelsLikeText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Feels like 25°"
+                                    android:textColor="#B0FFFFFF"
+                                    android:textSize="14sp"
+                                    android:layout_marginTop="4dp"
+                                    tools:text="Feels like 25°" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/weatherIcon"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/weather_sunny_cute"
+                                android:layout_marginStart="16dp" />
+
+                        </LinearLayout>
+
+                        <!-- Today's High/Low -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/rounded_background_semi_transparent"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Today"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:id="@+id/highLowText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="H:28° L:15°"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="H:28° L:15°" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Weather Details Grid -->
+                <LinearLayout
+                    android:id="@+id/weatherDetailsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible">
+
+                    <!-- First Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <include
+                            layout="@layout/weather_detail_card"
+                            android:id="@+id/uvIndexCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp" />
+
+                        <include
+                            layout="@layout/weather_detail_card"
+                            android:id="@+id/humidityCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp" />
+
+                    </LinearLayout>
+
+                    <!-- Second Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <include
+                            layout="@layout/weather_detail_card"
+                            android:id="@+id/windCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp" />
+
+                        <include
+                            layout="@layout/weather_detail_card"
+                            android:id="@+id/visibilityCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp" />
+
+                    </LinearLayout>
+
+                    <!-- Third Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <include
+                            layout="@layout/weather_detail_card"
+                            android:id="@+id/sunriseCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp" />
+
+                        <include
+                            layout="@layout/weather_detail_card"
+                            android:id="@+id/sunsetCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Weather Alerts -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/weatherAlertsCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="#FFEB3B">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="12dp">
+
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@drawable/ic_warning"
+                                app:tint="#FF6F00"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Weather Alert"
+                                android:textColor="#FF6F00"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif-medium" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/weatherAlertsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Hourly Forecast -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/hourlyForecastCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="@color/card_background_cute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_clock_cute"
+                                app:tint="@color/text_secondary_cute"
+                                android:layout_marginEnd="8dp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="24-hour forecast"
+                                android:textColor="@color/text_primary_cute"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif-medium" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/hourlyForecastRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:paddingHorizontal="4dp"
+                            tools:listitem="@layout/hourly_forecast_item_cute" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 10-Day Forecast -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dailyForecastCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="@color/card_background_cute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_calendar_cute"
+                                app:tint="@color/text_secondary_cute"
+                                android:layout_marginEnd="8dp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="10-day forecast"
+                                android:textColor="@color/text_primary_cute"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif-medium" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/dailyForecastRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/daily_forecast_item_cute" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Progress Indicator -->
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:visibility="gone"
+                    app:indicatorColor="@android:color/white"
+                    app:trackColor="#40FFFFFF" />
+
+                <!-- Error Message -->
+                <LinearLayout
+                    android:id="@+id/errorContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="32dp"
+                    android:background="@drawable/rounded_background_error"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_sad_cloud"
+                        app:tint="@color/error_color_cute"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:id="@+id/errorMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Oops! Something went wrong"
+                        android:textColor="@color/error_text_color"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:lineSpacingExtra="4dp"
+                        tools:text="Unable to fetch weather data" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/retryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Try again"
+                        android:layout_marginTop="16dp"
+                        app:cornerRadius="20dp"
+                        style="@style/Widget.Material3.Button.TextButton" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Floating Action Button for Current Location -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCurrentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_my_location_cute"
+        app:backgroundTint="@color/fab_background_cute"
+        app:tint="@android:color/white"
+        app:elevation="8dp"
+        app:fabSize="normal" />
+
+    <!-- Bottom Sheet for Settings/More Options -->
+    <include layout="@layout/bottom_sheet_weather_options" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

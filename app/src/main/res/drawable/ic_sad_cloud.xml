@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="80"
+    android:viewportHeight="80">
+
+    <!-- Cloud body -->
+    <path
+        android:fillColor="#94A3B8"
+        android:pathData="M20,50 C15,50 11,46 11,41 C11,36 15,32 20,32 C21,32 22,32.2 23,32.5 C25,25 32,20 40,20 C48,20 55,25 57,32.5 C58,32.2 59,32 60,32 C65,32 69,36 69,41 C69,46 65,50 60,50 Z" />
+
+    <!-- Sad eyes -->
+    <path
+        android:fillColor="#475569"
+        android:pathData="M32,36 C33.1,36 34,36.9 34,38 C34,39.1 33.1,40 32,40 C30.9,40 30,39.1 30,38 C30,36.9 30.9,36 32,36 Z" />
+    <path
+        android:fillColor="#475569"
+        android:pathData="M48,36 C49.1,36 50,36.9 50,38 C50,39.1 49.1,40 48,40 C46.9,40 46,39.1 46,38 C46,36.9 46.9,36 48,36 Z" />
+
+    <!-- Sad mouth -->
+    <path
+        android:pathData="M30,48 Q40,42 50,48"
+        android:strokeWidth="2"
+        android:strokeColor="#475569"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Tear drops -->
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M28,42.5 C28.8,42.5 29.5,43.2 29.5,44 C29.5,44.8 28.8,45.5 28,45.5 C27.2,45.5 26.5,44.8 26.5,44 C26.5,43.2 27.2,42.5 28,42.5 Z" />
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M52,42.5 C52.8,42.5 53.5,43.2 53.5,44 C53.5,44.8 52.8,45.5 52,45.5 C51.2,45.5 50.5,44.8 50.5,44 C50.5,43.2 51.2,42.5 52,42.5 Z" />
+
+</vector>

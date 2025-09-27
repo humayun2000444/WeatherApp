@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
+    <string name="app_name">Weather Pro</string>
+    <string name="search_hint">Search for a city...</string>
+    <string name="current_location">Current Location</string>
+    <string name="hourly_forecast">24-Hour Forecast</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="error_no_internet">No internet connection. Please check your network and try again.</string>
+    <string name="error_location_permission">Location permission required to get current weather.</string>
+    <string name="error_location_unavailable">Unable to get your location. Please enter a city name.</string>
+    <string name="error_general">Something went wrong. Please try again.</string>
 </resources>

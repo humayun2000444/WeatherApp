@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
+    <!-- Only allow HTTPS traffic -->
+    <base-config cleartextTrafficPermitted="false" />
+
+    <!-- Allow specific trusted domains -->
+    <domain-config>
         <domain includeSubdomains="true">api.weatherapi.com</domain>
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
     </domain-config>
+
+    <!-- Debug configurations for development only -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system"/>
+            <certificates src="user"/>
+        </trust-anchors>
+    </debug-overrides>
 </network-security-config>

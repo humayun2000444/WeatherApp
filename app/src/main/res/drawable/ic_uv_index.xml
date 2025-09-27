@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- UV rays -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M12,1L13,4L11,4L12,1ZM4.22,3.64L6.69,6.11L5.28,7.52L2.81,5.05L4.22,3.64ZM19.78,3.64L21.19,5.05L18.72,7.52L17.31,6.11L19.78,3.64ZM1,11L4,11L4,13L1,13L1,11ZM20,11L23,11L23,13L20,13L20,11ZM4.22,20.36L5.28,16.48L6.69,17.89L2.81,19.95L4.22,20.36ZM19.78,20.36L21.19,18.95L18.72,16.48L17.31,17.89L19.78,20.36ZM12,20L11,23L13,23L12,20Z" />
+
+    <!-- Sun center -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M12,7C14.76,7 17,9.24 17,12C17,14.76 14.76,17 12,17C9.24,17 7,14.76 7,12C7,9.24 9.24,7 12,7Z" />
+
+</vector>

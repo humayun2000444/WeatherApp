@@ -3,6 +3,7 @@ package com.example.weatherapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAdapter.ViewHolder> {
 
@@ -35,26 +40,53 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
         String temp = hourData.get("temp_c").getAsString();
         String condition = hourData.getAsJsonObject("condition").get("text").getAsString();
 
-        holder.timeTextView.setText(time);
-        holder.tempTextView.setText(temp + "°C");
+        String formattedTime = formatTime(time, position);
+        holder.timeTextView.setText(formattedTime);
+        holder.tempTextView.setText(Math.round(Double.parseDouble(temp)) + "°");
         holder.conditionTextView.setText(condition);
+
+        setWeatherIcon(holder.weatherIconImageView, condition);
+    }
+
+    private String formatTime(String dateTimeString, int position) {
+        try {
+            if (position == 0) return "Now";
+
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+            SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            Date date = inputFormat.parse(dateTimeString);
+            return outputFormat.format(date);
+        } catch (Exception e) {
+            return dateTimeString.substring(dateTimeString.length() - 5);
+        }
+    }
+
+    private void setWeatherIcon(ImageView imageView, String condition) {
+        String conditionLower = condition.toLowerCase();
+        if (conditionLower.contains("sunny") || conditionLower.contains("clear")) {
+            imageView.setImageResource(R.drawable.weather_sunny_cute);
+        } else {
+            imageView.setImageResource(R.drawable.weather_sunny_cute);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return hourlyData.size();
+        return Math.min(hourlyData.size(), 24);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView timeTextView;
         public TextView tempTextView;
         public TextView conditionTextView;
+        public ImageView weatherIconImageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             timeTextView = itemView.findViewById(R.id.timeTextView);
             tempTextView = itemView.findViewById(R.id.tempTextView);
             conditionTextView = itemView.findViewById(R.id.conditionTextView);
+            weatherIconImageView = itemView.findViewById(R.id.weatherIconImageView);
         }
     }
 }

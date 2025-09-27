@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Sun rays -->
+    <group android:name="sun_rays">
+        <path
+            android:fillColor="#FFE135"
+            android:pathData="M60,10 L60,20 M60,100 L60,110 M10,60 L20,60 M100,60 L110,60 M22.93,22.93 L30.51,30.51 M89.49,89.49 L97.07,97.07 M22.93,97.07 L30.51,89.49 M89.49,30.51 L97.07,22.93"
+            android:strokeWidth="4"
+            android:strokeColor="#FFE135"
+            android:strokeLineCap="round" />
+    </group>
+
+    <!-- Sun body -->
+    <path
+        android:fillColor="#FFE135"
+        android:pathData="M60,35 C73.81,35 85,46.19 85,60 C85,73.81 73.81,85 60,85 C46.19,85 35,73.81 35,60 C35,46.19 46.19,35 60,35 Z" />
+
+    <!-- Sun face -->
+    <!-- Eyes -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M52,49 C54.21,49 55,50.79 55,52 C55,54.21 54.21,55 52,55 C49.79,55 49,54.21 49,52 C49,50.79 49.79,49 52,49 Z" />
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M68,49 C70.21,49 71,50.79 71,52 C71,54.21 70.21,55 68,55 C65.79,55 65,54.21 65,52 C65,50.79 65.79,49 68,49 Z" />
+
+    <!-- Smile -->
+    <path
+        android:pathData="M48,68 Q60,78 72,68"
+        android:strokeWidth="3"
+        android:strokeColor="#FF6B35"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- Rosy cheeks -->
+    <path
+        android:fillColor="#FFB3BA"
+        android:fillAlpha="0.6"
+        android:pathData="M42,58 C44.21,58 46,59.79 46,62 C46,64.21 44.21,66 42,66 C39.79,66 38,64.21 38,62 C38,59.79 39.79,58 42,58 Z" />
+    <path
+        android:fillColor="#FFB3BA"
+        android:fillAlpha="0.6"
+        android:pathData="M78,58 C80.21,58 82,59.79 82,62 C82,64.21 80.21,66 78,66 C75.79,66 74,64.21 74,62 C74,59.79 75.79,58 78,58 Z" />
+
+</vector>

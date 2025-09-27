@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors (same for dark mode) -->
+    <color name="primary_color">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+
+    <!-- Background Colors -->
+    <color name="background_primary">#121212</color>
+    <color name="card_background">#1E1E1E</color>
+    <color name="current_weather_card">#2E7D32</color>
+    <color name="hourly_item_background">#2C2C2C</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="hint_color">#666666</color>
+    <color name="error_color">#F44336</color>
+
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#1976D2</color>
+    <color name="gradient_end">#0D47A1</color>
+</resources>
